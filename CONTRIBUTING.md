@@ -2,7 +2,7 @@
 
 Thanks for considering contributing to rlpyt!
 
-It's a research code base, so we'll try to keep things light and easy.  A typical workflow is to start a discussion about bugs or new features in an Issue, and work together to choose a strategy for a fix or enhancement.  Pull Requests are appreciated to lighten my workload, but in some cases I can also just apply changes and push directly.  Please try to make PRs small and focused so they are easy to review.  
+It's a research code base, so we'll try to keep things light and easy.  A typical workflow is to start a discussion about bugs or new features in an Issue, and work together to choose a strategy for a fix or enhancement.  Pull Requests are appreciated to lighten my workload, but in some cases I can also just apply changes and push directly.  Please try to make PRs small and focused so they are easy to review.
 
 ## Contributions we're looking for
 

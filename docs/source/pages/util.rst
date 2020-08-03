@@ -123,5 +123,3 @@ Seed
 .. autofunction:: rlpyt.utils.seed.set_seed
 
 .. autofunction:: rlpyt.utils.seed.make_seed
-
-

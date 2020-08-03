@@ -3,6 +3,7 @@ import json
 import os
 import os.path as osp
 from contextlib import contextmanager
+
 try:
     from torch.utils.tensorboard.writer import SummaryWriter
 except ImportError:
@@ -10,7 +11,7 @@ except ImportError:
 
 from rlpyt.utils.logging import logger
 
-LOG_DIR = osp.abspath(osp.join(osp.dirname(__file__), '../../../data'))
+LOG_DIR = osp.abspath(osp.join(osp.dirname(__file__), "../../../data"))
 
 
 def get_log_dir(experiment_name, root_log_dir=None, date=True):
@@ -23,7 +24,12 @@ def get_log_dir(experiment_name, root_log_dir=None, date=True):
 
 @contextmanager
 def logger_context(
-    log_dir, run_ID, name, log_params=None, snapshot_mode="none", override_prefix=False,
+    log_dir,
+    run_ID,
+    name,
+    log_params=None,
+    snapshot_mode="none",
+    override_prefix=False,
     use_summary_writer=False,
 ):
     """Use as context manager around calls to the runner's ``train()`` method.
@@ -44,7 +50,7 @@ def logger_context(
         * "none": don't save at all
         * "last": always save and overwrite the previous
         * "all": always save and keep each iteration
-        * "gap": save periodically and keep each (will also need to set the gap, not done here) 
+        * "gap": save periodically and keep each (will also need to set the gap, not done here)
 
     The cleanup operations after the ``yield`` close files but might not be
     strictly necessary if not launching another training session in the same
@@ -55,8 +61,10 @@ def logger_context(
     log_dir = osp.join(log_dir, f"run_{run_ID}")
     exp_dir = osp.abspath(log_dir)
     if LOG_DIR != osp.commonpath([exp_dir, LOG_DIR]) and not override_prefix:
-        print(f"logger_context received log_dir outside of {LOG_DIR}: "
-            f"prepending by {LOG_DIR}/local/<yyyymmdd>/<hhmmss>/")
+        print(
+            f"logger_context received log_dir outside of {LOG_DIR}: "
+            f"prepending by {LOG_DIR}/local/<yyyymmdd>/<hhmmss>/"
+        )
         exp_dir = get_log_dir(log_dir)
     tabular_log_file = osp.join(exp_dir, "progress.csv")
     text_log_file = osp.join(exp_dir, "debug.log")
@@ -97,15 +105,26 @@ def add_exp_param(param_name, param_val, exp_dir=None, overwrite=False):
                 params = json.load(f)
                 if param_name in params:
                     if overwrite:
-                        print("Overwriting param: {}, old val: {}, new val: {}".format(
-                            param_name, params[param_name], param_val))
+                        print(
+                            "Overwriting param: {}, old val: {}, new val: {}".format(
+                                param_name, params[param_name], param_val
+                            )
+                        )
                     else:
-                        print("Param {} already found & overwrite set to False; "
-                            "leaving old val: {}.".format(param_name, params[param_name]))
+                        print(
+                            "Param {} already found & overwrite set to False; "
+                            "leaving old val: {}.".format(
+                                param_name, params[param_name]
+                            )
+                        )
                         update_param = False
             if update_param:
                 os.remove(params_f)
-                if param_name in params and isinstance(params[param_name], dict) and isinstance(param_val, dict):
+                if (
+                    param_name in params
+                    and isinstance(params[param_name], dict)
+                    and isinstance(param_val, dict)
+                ):
                     print(f"Param {param_name} is a dict and so is val, just updating.")
                     params[param_name].update(param_val)
                 else:

@@ -1,9 +1,7 @@
-
 """
 Currently unused in rlpyt, but might be useful later.  For creating shared
 memory between processes AFTER they fork.
 """
-
 #
 # Based on multiprocessing.sharedctypes.RawArray
 #
@@ -23,26 +21,34 @@ memory between processes AFTER they fork.
 #
 # Edited for python 3 by: Adam Stooke
 #
+import ctypes
+import mmap
+import sys
+import time
+from string import ascii_letters
+from string import digits
 
 import numpy as np
-# import os
-import time
-import sys
-import mmap
-import ctypes
 import posix_ipc
+
+# import os
 # from _multiprocessing import address_of_buffer  # (not in python 3)
-from string import ascii_letters, digits
 
 valid_chars = frozenset("/-_. %s%s" % (ascii_letters, digits))
 
 typecode_to_type = {
-    'c': ctypes.c_char, 'u': ctypes.c_wchar,
-    'b': ctypes.c_byte, 'B': ctypes.c_ubyte,
-    'h': ctypes.c_short, 'H': ctypes.c_ushort,
-    'i': ctypes.c_int, 'I': ctypes.c_uint,
-    'l': ctypes.c_long, 'L': ctypes.c_ulong,
-    'f': ctypes.c_float, 'd': ctypes.c_double
+    "c": ctypes.c_char,
+    "u": ctypes.c_wchar,
+    "b": ctypes.c_byte,
+    "B": ctypes.c_ubyte,
+    "h": ctypes.c_short,
+    "H": ctypes.c_ushort,
+    "i": ctypes.c_int,
+    "I": ctypes.c_uint,
+    "l": ctypes.c_long,
+    "L": ctypes.c_ulong,
+    "f": ctypes.c_float,
+    "d": ctypes.c_double,
 }
 
 
@@ -51,7 +57,6 @@ def address_of_buffer(buf):  # (python 3)
 
 
 class ShmemBufferWrapper:
-
     def __init__(self, tag, size, create=True):
         # default vals so __del__ doesn't fail if __init__ fails to complete
         self._mem = None

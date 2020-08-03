@@ -1,7 +1,7 @@
-
-from rlpyt.utils.launching.variant import make_variants, VariantLevel
-from rlpyt.utils.launching.exp_launcher import run_experiments
 from rlpyt.utils.launching.affinity import quick_affinity_code
+from rlpyt.utils.launching.exp_launcher import run_experiments
+from rlpyt.utils.launching.variant import make_variants
+from rlpyt.utils.launching.variant import VariantLevel
 
 
 script = "rlpyt/projects/safe/experiments/scripts/train/train_cppo.py"

@@ -1,4 +1,3 @@
-
 """
 Runs multiple instances of the Atari environment and optimizes using A2C
 algorithm and a feed-forward agent. Uses GPU parallel sampler, with option for
@@ -8,23 +7,23 @@ whether to reset environments in middle of sampling batch.
 """
 import sys
 
-from rlpyt.utils.launching.affinity import affinity_from_code
-from rlpyt.samplers.parallel.gpu.sampler import GpuSampler
-from rlpyt.samplers.parallel.gpu.collectors import GpuWaitResetCollector
-from rlpyt.envs.atari.atari_env import AtariEnv, AtariTrajInfo
-from rlpyt.algos.pg.a2c import A2C
 from rlpyt.agents.pg.atari import AtariFfAgent
+from rlpyt.algos.pg.a2c import A2C
+from rlpyt.envs.atari.atari_env import AtariEnv
+from rlpyt.envs.atari.atari_env import AtariTrajInfo
 from rlpyt.runners.minibatch_rl import MinibatchRl
+from rlpyt.samplers.parallel.gpu.collectors import GpuWaitResetCollector
+from rlpyt.samplers.parallel.gpu.sampler import GpuSampler
+from rlpyt.utils.launching.affinity import affinity_from_code
+from rlpyt.utils.launching.variant import load_variant
+from rlpyt.utils.launching.variant import update_config
 from rlpyt.utils.logging.context import logger_context
-from rlpyt.utils.launching.variant import load_variant, update_config
 
 
 def build_and_train(slot_affinity_code, log_dir, run_ID):
     # (Or load from a central store of configs.)
     config = dict(
-        env=dict(game="pong"),
-        algo=dict(learning_rate=7e-4),
-        sampler=dict(batch_B=16),
+        env=dict(game="pong"), algo=dict(learning_rate=7e-4), sampler=dict(batch_B=16),
     )
 
     affinity = affinity_from_code(slot_affinity_code)

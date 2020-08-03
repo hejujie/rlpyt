@@ -1,4 +1,3 @@
-
 import copy
 
 configs = dict()
@@ -10,17 +9,14 @@ config = dict(
         discount=0.99,
         batch_size=128,
         learning_rate=1e-4,  # Trying lower for adam.
-        clip_grad_norm=10.,
+        clip_grad_norm=10.0,
         min_steps_learn=int(5e4),
         double_dqn=False,
         prioritized_replay=False,
         n_step_return=1,
         replay_size=int(1e6),
     ),
-    env=dict(
-        game="pong",
-        episodic_lives=True,
-    ),
+    env=dict(game="pong", episodic_lives=True,),
     eval_env=dict(
         game="pong",  # NOTE: update in train script!
         episodic_lives=False,
@@ -28,10 +24,7 @@ config = dict(
     ),
     model=dict(dueling=False),
     optim=dict(),
-    runner=dict(
-        n_steps=50e6,
-        log_interval_steps=1e6,
-    ),
+    runner=dict(n_steps=50e6, log_interval_steps=1e6,),
     sampler=dict(
         batch_T=2,
         batch_B=16,

@@ -4,7 +4,7 @@ Collectors
 
 Collectors run the environment-agent interaction loop and record sampled data to the batch buffer.  The serial sampler runs one collector, and in parallel samplers, each worker process runs one collector.  Different collectors are needed for CPU-agent vs GPU-agent samplers.
 
-In general, collectors will execute a for loop over time steps, and and inner for loop over environments, and step each environment one at a time.  At every step, all information (e.g. `observation`, `env_info`, etc.) is recorded to its place in the pre-allocated batch buffer.  All information is also fed to the trajectory-info object for each environment, for tracking trajectory-wise measures.  
+In general, collectors will execute a for loop over time steps, and and inner for loop over environments, and step each environment one at a time.  At every step, all information (e.g. `observation`, `env_info`, etc.) is recorded to its place in the pre-allocated batch buffer.  All information is also fed to the trajectory-info object for each environment, for tracking trajectory-wise measures.
 
 Evaluation collectors only record trajectory-wise results.
 

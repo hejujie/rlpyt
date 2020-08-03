@@ -25,4 +25,3 @@ Distributions are used to select randomized actions during sampling, and for som
 
 .. autoclass:: rlpyt.distributions.gaussian.Gaussian
     :members: entropy, log_likelihood, sample_loglikelihood, sample, set_clip, set_squash, set_noise_clip, set_std
-

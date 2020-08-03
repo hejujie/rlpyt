@@ -1,9 +1,7 @@
-
 from collections import namedtuple
 
 
-EnvStep = namedtuple("EnvStep",
-    ["observation", "reward", "done", "env_info"])
+EnvStep = namedtuple("EnvStep", ["observation", "reward", "done", "env_info"])
 EnvInfo = namedtuple("EnvInfo", [])  # Define in env file.
 EnvSpaces = namedtuple("EnvSpaces", ["observation", "action"])
 
@@ -21,7 +19,7 @@ class Env:
 
         Args:
             action: An element of this environment's action space.
-        
+
         Returns:
             observation: An element of this environment's observation space corresponding to the next state.
             reward (float): A scalar reward resulting from the state transition.
@@ -50,10 +48,7 @@ class Env:
 
     @property
     def spaces(self):
-        return EnvSpaces(
-            observation=self.observation_space,
-            action=self.action_space,
-        )
+        return EnvSpaces(observation=self.observation_space, action=self.action_space,)
 
     @property
     def horizon(self):

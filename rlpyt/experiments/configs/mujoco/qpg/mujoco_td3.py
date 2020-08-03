@@ -1,13 +1,9 @@
-
 import copy
 
 configs = dict()
 
 config = dict(
-    agent=dict(
-        model_kwargs=None,
-        q_model_kwargs=None,
-    ),
+    agent=dict(model_kwargs=None, q_model_kwargs=None,),
     algo=dict(
         discount=0.99,
         batch_size=100,
@@ -22,10 +18,7 @@ config = dict(
     # eval_env=dict(id="Hopper-v3"),  # Train script uses "env".
     model=dict(),
     optim=dict(),
-    runner=dict(
-        n_steps=1e6,
-        log_interval_steps=1e4,
-    ),
+    runner=dict(n_steps=1e6, log_interval_steps=1e4,),
     sampler=dict(
         batch_T=1,
         batch_B=1,

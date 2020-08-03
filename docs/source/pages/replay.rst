@@ -149,5 +149,3 @@ Sequence Replay
 
 .. autoclass:: rlpyt.replays.sequence.frame.AsyncPrioritizedSequenceReplayFrameBuffer
     :show-inheritance:
-
-

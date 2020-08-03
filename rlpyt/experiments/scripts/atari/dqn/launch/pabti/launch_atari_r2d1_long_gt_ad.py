@@ -1,14 +1,11 @@
-
 from rlpyt.utils.launching.affinity import encode_affinity
 from rlpyt.utils.launching.exp_launcher import run_experiments
-from rlpyt.utils.launching.variant import make_variants, VariantLevel
+from rlpyt.utils.launching.variant import make_variants
+from rlpyt.utils.launching.variant import VariantLevel
 
 script = "rlpyt/experiments/scripts/atari/dqn/train/atari_r2d1_gpu.py"
 affinity_code = encode_affinity(
-    n_cpu_core=24,
-    n_gpu=4,
-    hyperthread_offset=24,
-    n_socket=2,
+    n_cpu_core=24, n_gpu=4, hyperthread_offset=24, n_socket=2,
 )
 runs_per_setting = 2
 experiment_title = "atari_r2d1_long"

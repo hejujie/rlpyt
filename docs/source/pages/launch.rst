@@ -32,7 +32,7 @@ Some simple tools are provided for creating hyperparameter value variants.
 Affinity
 --------
 
-The hardware affinity is used for several purposes: 1) the experiment launcher uses it to determine how many concurrent experiments to run, 2) runners use it to determine GPU device selection, 3) parallel samplers use it to determine the number of worker processes, and 4) multi-GPU and asynchronous runners use it to determine the number of parallel processes.  The main intent of the implemented utilities is to take as input the total amount of hardware resources in the computer (CPU & GPU) and the amount of resources to be dedicated to each job, and then to divide resources evenly.  
+The hardware affinity is used for several purposes: 1) the experiment launcher uses it to determine how many concurrent experiments to run, 2) runners use it to determine GPU device selection, 3) parallel samplers use it to determine the number of worker processes, and 4) multi-GPU and asynchronous runners use it to determine the number of parallel processes.  The main intent of the implemented utilities is to take as input the total amount of hardware resources in the computer (CPU & GPU) and the amount of resources to be dedicated to each job, and then to divide resources evenly.
 
 .. admonition:: Example
 

@@ -1,10 +1,10 @@
-
-import numpy as np
 import gym
+import numpy as np
 from gym import Wrapper
 from gym.wrappers.time_limit import TimeLimit
 
-from rlpyt.envs.base import EnvSpaces, EnvStep
+from rlpyt.envs.base import EnvSpaces
+from rlpyt.envs.base import EnvStep
 from rlpyt.spaces.gym_wrapper_schema import GymSpaceWrapper
 from rlpyt.utils.collections import NamedTupleSchema
 
@@ -27,11 +27,10 @@ class GymEnvWrapper(Wrapper):
         silently ignored.
 
     This wrapper looks for gym's ``TimeLimit`` env wrapper to
-    see whether to add the field ``timeout`` to env info.   
+    see whether to add the field ``timeout`` to env info.
     """
 
-    def __init__(self, env,
-            act_null_value=0, obs_null_value=0, force_float32=True):
+    def __init__(self, env, act_null_value=0, obs_null_value=0, force_float32=True):
         super().__init__(env)
         o = self.env.reset()
         o, r, d, info = self.env.step(self.env.action_space.sample())
@@ -62,10 +61,11 @@ class GymEnvWrapper(Wrapper):
         ntc = self._info_schemas.get(name)
         info_keys = [str(k).replace(".", "_") for k in info.keys()]
         if ntc is None:
-            self._info_schemas[name] = NamedTupleSchema(
-                name, list(info_keys))
-        elif not (isinstance(ntc, NamedTupleSchema) and
-                  sorted(ntc._fields) == sorted(info_keys)):
+            self._info_schemas[name] = NamedTupleSchema(name, list(info_keys))
+        elif not (
+            isinstance(ntc, NamedTupleSchema)
+            and sorted(ntc._fields) == sorted(info_keys)
+        ):
             raise ValueError(f"Name clash in schema index: {name}.")
         for k, v in info.items():
             if isinstance(v, dict):
@@ -94,10 +94,7 @@ class GymEnvWrapper(Wrapper):
     @property
     def spaces(self):
         """Returns the rlpyt spaces for the wrapped env."""
-        return EnvSpaces(
-            observation=self.observation_space,
-            action=self.action_space,
-        )
+        return EnvSpaces(observation=self.observation_space, action=self.action_space,)
 
 
 def info_to_nt(value, schemas, name="info"):
@@ -105,8 +102,11 @@ def info_to_nt(value, schemas, name="info"):
         return value
     ntc = schemas[name]
     # Disregard unrecognized keys:
-    values = {k: info_to_nt(v, schemas, "_".join([name, k]))
-              for k, v in value.items() if k in ntc._fields}
+    values = {
+        k: info_to_nt(v, schemas, "_".join([name, k]))
+        for k, v in value.items()
+        if k in ntc._fields
+    }
     # Can catch some missing values (doesn't nest):
     values.update({k: 0 for k in ntc._fields if k not in values})
     return ntc(**values)
@@ -161,5 +161,4 @@ def make(*args, info_example=None, **kwargs):
     if info_example is None:
         return GymEnvWrapper(gym.make(*args, **kwargs))
     else:
-        return GymEnvWrapper(EnvInfoWrapper(
-            gym.make(*args, **kwargs), info_example))
+        return GymEnvWrapper(EnvInfoWrapper(gym.make(*args, **kwargs), info_example))

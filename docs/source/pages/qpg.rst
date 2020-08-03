@@ -47,7 +47,3 @@ Soft Actor Critic (SAC)
     :show-inheritance:
 
 .. autoclass:: rlpyt.models.qpg.mlp.PiMlpModel
-
-
-
-

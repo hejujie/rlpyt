@@ -70,6 +70,3 @@ Miscellaneous
 
 .. autoclass:: rlpyt.models.dqn.atari_catdqn_model.DistributionalHeadModel
     :show-inheritance:
-
-
-

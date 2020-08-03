@@ -74,4 +74,3 @@ Component Definitions
 .. autoclass:: rlpyt.samplers.async_.action_server.AsyncNoOverlapAlternatingActionServer
     :members: serve_actions_evaluation
     :show-inheritance:
-

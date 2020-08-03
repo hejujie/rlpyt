@@ -1,12 +1,11 @@
-
 """
 Launches multiple experiment runs and organizes them on the local
 compute resource.
 Processor (CPU and GPU) affinities are all specified, to keep each
 experiment on its own hardware without interference.  Can queue up more
-experiments than fit on the machine, and they will run in order over time.  
+experiments than fit on the machine, and they will run in order over time.
 
-To understand rules and settings for affinities, try using 
+To understand rules and settings for affinities, try using
 affinity = affinity.make_affinity(..)
 OR
 code = affinity.encode_affinity(..)
@@ -18,10 +17,11 @@ The results will be logged with a folder structure according to the
 variant levels constructed here.
 
 """
-
-from rlpyt.utils.launching.affinity import encode_affinity, quick_affinity_code
+from rlpyt.utils.launching.affinity import encode_affinity
+from rlpyt.utils.launching.affinity import quick_affinity_code
 from rlpyt.utils.launching.exp_launcher import run_experiments
-from rlpyt.utils.launching.variant import make_variants, VariantLevel
+from rlpyt.utils.launching.variant import make_variants
+from rlpyt.utils.launching.variant import VariantLevel
 
 # Either manually set the resources for the experiment:
 affinity_code = encode_affinity(

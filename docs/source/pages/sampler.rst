@@ -67,4 +67,3 @@ The same function is used as the target for forking worker processes in all para
 .. autofunction:: rlpyt.samplers.parallel.worker.sampling_process
 
 .. autofunction:: rlpyt.samplers.parallel.worker.initialize_worker
-

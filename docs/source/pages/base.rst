@@ -4,7 +4,7 @@ Base Classes and Interfaces
 
 This page describes the base classes for three main components: algorithm, agent, and environment.  These are the most likely to need modification for a new project.  Intended interfaces to the infrastructure code (i.e. runner and sampler) are specified here.  More details on specific instances of these components appear in following pages.
 
-Commonly, these classes will simply store their keyword arguments when instantiated, and actual initialization occurs in methods to be called later by the runner or sampler.  
+Commonly, these classes will simply store their keyword arguments when instantiated, and actual initialization occurs in methods to be called later by the runner or sampler.
 
 
 Algorithms

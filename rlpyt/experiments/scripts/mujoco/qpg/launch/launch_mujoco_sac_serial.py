@@ -1,15 +1,11 @@
-
 from rlpyt.utils.launching.affinity import encode_affinity
 from rlpyt.utils.launching.exp_launcher import run_experiments
-from rlpyt.utils.launching.variant import make_variants, VariantLevel
+from rlpyt.utils.launching.variant import make_variants
+from rlpyt.utils.launching.variant import VariantLevel
 
 script = "rlpyt/experiments/scripts/mujoco/qpg/train/mujoco_sac_serial.py"
 affinity_code = encode_affinity(
-    n_cpu_core=2,
-    n_gpu=0,
-    hyperthread_offset=2,
-    n_socket=1,
-    cpu_per_run=1,
+    n_cpu_core=2, n_gpu=0, hyperthread_offset=2, n_socket=1, cpu_per_run=1,
 )
 runs_per_setting = 2
 default_config_key = "sac_1M_serial"

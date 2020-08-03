@@ -1,4 +1,3 @@
-
 import copy
 
 configs = dict()
@@ -21,15 +20,8 @@ config = dict(
     env=dict(id="Hopper-v3"),
     model=dict(normalize_observation=False),
     optim=dict(),
-    runner=dict(
-        n_steps=1e6,
-        log_interval_steps=2048 * 10,
-    ),
-    sampler=dict(
-        batch_T=2048,
-        batch_B=1,
-        max_decorrelation_steps=0,
-    ),
+    runner=dict(n_steps=1e6, log_interval_steps=2048 * 10,),
+    sampler=dict(batch_T=2048, batch_B=1, max_decorrelation_steps=0,),
 )
 
 configs["ppo_1M_serial"] = config

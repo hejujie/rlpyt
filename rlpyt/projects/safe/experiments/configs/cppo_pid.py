@@ -1,14 +1,9 @@
-
 import copy
 
 configs = dict()
 
 config = dict(
-    env=dict(
-        id="Safexp-PointGoal0-v0",
-        obs_prev_cost=True,
-        obs_version="default",
-    ),
+    env=dict(id="Safexp-PointGoal0-v0", obs_prev_cost=True, obs_version="default",),
     sampler=dict(
         batch_T=128,
         batch_B=104,  # Might bust memory limits.
@@ -17,7 +12,7 @@ config = dict(
     algo=dict(
         discount=0.99,
         learning_rate=1e-4,
-        value_loss_coeff=1.,
+        value_loss_coeff=1.0,
         entropy_loss_coeff=0,
         clip_grad_norm=1e4,
         gae_lambda=0.97,
@@ -32,7 +27,7 @@ config = dict(
         ep_cost_ema_alpha=0,  # 0 for hard update.
         objective_penalized=True,
         learn_c_value=True,
-        penalty_init=0.,
+        penalty_init=0.0,
         cost_limit=25,
         cost_scale=10,  # yes 10.
         normalize_cost_advantage=False,
@@ -67,10 +62,7 @@ config = dict(
         normalize_observation=True,
         var_clip=1e-6,
     ),
-    runner=dict(
-        n_steps=25e6,
-        log_interval_steps=1e5,
-    ),
+    runner=dict(n_steps=25e6, log_interval_steps=1e5,),
 )
 
 configs["LSTM"] = config
